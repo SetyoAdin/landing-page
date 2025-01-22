@@ -1,120 +1,249 @@
-/* General Reset */
-body, h1, h2, p, footer {
+/* Modern CSS Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  body {
+}
+
+/* Root variables for consistent theming */
+:root {
+    --primary-dark: #402E7A;    /* Dark purple */
+    --primary-medium: #4C3BCF;  /* Medium purple */
+    --primary-light: #4B70F5;   /* Light purple/blue */
+    --accent: #3DC2EC;          /* Cyan */
+    --text-color: #2A2A2A;
+    --light-text: #666666;
+    --background: #ffffff;
+    --section-bg: #f8f9ff;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     line-height: 1.6;
-    height: 100%; /* Tambahkan agar body mengambil tinggi penuh */
+    color: var(--text-color);
+}
+
+body {
     display: flex;
     flex-direction: column;
-  }
-  
-  /* Header */
-  header {
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    min-height: 100vh;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
     color: white;
-    padding: 3rem 2rem;
+    padding: 6rem 2rem 8rem; /* Increased bottom padding */
     text-align: center;
-  }
-  
-  header h1 {
-    font-size: 2.5rem;
-    white-space: nowrap;
+    position: relative;
     overflow: hidden;
-    display: inline-block;
-  }
-  
-  header p {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-  }
-  
-  /* Container untuk pengaturan konten */
-  .container {
+    margin-bottom: -4rem; /* Creates overlap with content below */
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -2rem; /* Moved down to create more curve */
+    left: 0;
+    right: 0;
+    height: 8rem; /* Increased height for more dramatic curve */
+    background: var(--background);
+    clip-path: polygon(0 65%, 100% 0, 100% 100%, 0% 100%); /* Adjusted curve */
+    z-index: 1;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
     max-width: 800px;
     margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  /* Tentang Saya */
-  .about, .contact {
-    padding: 2rem 1rem;
+    text-align: center; /* Memastikan teks di header selalu terpusat */
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.2;
+    padding: 0 1rem;
+    display: inline-block;
+    width: auto;
+    min-height: 3.6rem;
+}
+
+header p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Main Content */
+main {
+    flex: 1 0 auto;
+    position: relative;
+    z-index: 2;
+    background: var(--background);
+}
+
+/* Content Wrapper for sections */
+#content-wrapper {
+    margin-bottom: 2rem; 
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section {
+    padding: 5rem 0;
+}
+
+/* First section needs extra padding to account for header overlap */
+section:first-child {
+    padding-top: 8rem;
+}
+
+section:nth-child(even) {
+    background-color: var(--section-bg);
+}
+
+.contact {
     text-align: center;
-  }
-  
-  .about h2, .contact h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-  
-  .about p {
-    color: #555;
-    margin-bottom: 1rem;
-  }
-  
-  /* Tombol Kontak */
-  .contact button {
-    background: #00f2fe;
+}
+
+.about h2, .contact h2 {
+    font-size: 2.25rem;
+    color: var(--primary-dark);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.about p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Contact Button */
+.contact button {
+    background-color: var(--primary-light);
     color: white;
     border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 5px;
-    font-size: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .contact button:hover {
-    background: #007ebc;
-  }
-  
-  /* Footer */
-  footer {
-    background: #333;
-    color: #ffffff;
+    transition: all 0.3s ease;
+    display: inline-block; 
+    margin-top: 1rem; 
+}
+
+.contact button:hover {
+    background-color: var(--primary-medium);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(75, 112, 245, 0.2);
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-dark);
+    color: white;
     text-align: center;
-    padding: 1rem 0;
-    margin-top: auto; /* Footer selalu berada di bawah */
-  }
-  
-  /* Animasi kursor */
-  .cursor {
+    padding: 2rem 0;
+    margin-top: auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Cursor Animation */
+.cursor {
     display: inline-block;
-    width: 2px;
-    background-color: white;
-    animation: blink 0.7s steps(1) infinite;
-  }
-  
-  @keyframes blink {
-    50% {
-      background-color: transparent;
+    width: 3px;
+    height: 1.2em;
+    background-color: var(--accent);
+    margin-left: 2px;
+    animation: blink 1s steps(2) infinite;
+    vertical-align: text-top;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        padding: 4rem 1rem 6rem; /* Adjusted for mobile */
     }
-  }
-  
-  /* Responsif untuk layar kecil */
-  @media (max-width: 768px) {
+
+    section:first-child {
+        padding-top: 6rem; /* Adjusted for mobile */
+    }
+
     header h1 {
-      font-size: 2rem;
+        font-size: 2rem;
+        min-height: 2.4rem;
     }
-  
+
     header p {
-      font-size: 1rem;
+        font-size: 1rem;
     }
-  
+
+    section {
+        padding: 3rem 0;
+    }
+
     .about h2, .contact h2 {
-      font-size: 1.5rem;
+        font-size: 2.25rem;
+        color: var(--primary-dark);
+        margin-bottom: 1.5rem;
     }
-  
+
     .about p {
-      font-size: 1rem;
+        font-size: 1rem;
+        padding: 0 1rem;
     }
-  
+
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 4rem 1rem 5rem; /* Adjusted for smaller mobile */
+    }
+
+    section:first-child {
+        padding-top: 5rem; /* Adjusted for smaller mobile */
+    }
+
+    header h1 {
+        font-size: 1.75rem;
+        min-height: 2.1rem;
+    }
+
     .contact button {
-      padding: 0.6rem 1rem;
+        width: 100%;
+        padding: 0.875rem 1.5rem;
     }
-  }
-  
+}
+
+.contact p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    margin-bottom: 1rem; 
+}
